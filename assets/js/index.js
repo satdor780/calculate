@@ -68,21 +68,31 @@ document.querySelector('.buttons').addEventListener('click', function(event) {
     }
     if (a == '') calc_text.textContent = '=0';
 
-    if (!a == '' && !b == '') {
-      if (sign == '+') {
-        a = (+a) + (+b)
-      }else if (sign == '-'){
-        a = (+a) - (+b)
-      }else if (sign == 'X'){
-        a = (+a) * (+b)
-      }else if (sign == '/'){
-        a = (+a) / (+b)
+    if (a !== '' && b !== '') {
+      switch (sign) {
+        case '+':
+          a = (+a) + (+b);
+          break;
+        case '-':
+          a = (+a) - (+b);
+          break;
+        case 'X':
+          a = (+a) * (+b);
+          break;
+        case '/':
+          a = (+a) / (+b);
+          break;
+        default:
+          console.error('Неизвестный оператор:', sign);
+          return;
       }
-      calc_text.textContent += a
+    
+      calc_text.textContent += a;
       equals = true;
-      toExpon()
+      toExpon();
       return a;
-    }   
+    }
+
   }
 
   if (event.target.classList.contains('negative')) {
